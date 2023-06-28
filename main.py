@@ -12,7 +12,20 @@ print(len(x))
 # Which sentences contain the word love
 
 pattern = re.compile("[A-Z]{1}[^.]*[^a-zA-Z]+love[^a-zA-Z]+[^.]*.")
-findings = re.findall(pattern,content)
-for index,finding in enumerate(findings):
+findings = re.findall(pattern, content)
+for index, finding in enumerate(findings):
     Num = str(index)
     print(f"{Num} {finding}")
+# What are the most used words in the book
+pattern = re.compile("[a-zA-Z]+")
+words = re.findall(pattern, content.lower())
+word_usage = {}
+for word in words:
+    if word in word_usage.keys():
+        word_usage[word] = word_usage[word] + 1
+    else:
+        word_usage[word] = 1
+word_list = [(value,key) for (key,value) in word_usage.items()]
+print(sorted(word_list, reverse=True))
+
+
